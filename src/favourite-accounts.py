@@ -14,8 +14,10 @@ def main():
     for aggregate in favourites:
         # get details
         #balance = aggregate.get_balance()
+        today = Datum()
+        today.today()
 
-        balance = aggregate.get_balance_on()
+        balance = aggregate.get_balance_on(today.value)
         print(f"{aggregate.account.name}, {balance}")
 
     print("\n")
