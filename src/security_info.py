@@ -6,6 +6,8 @@ argparse can effectively replace click for building CLIs.
 import argparse
 from piecash import Commodity
 from gnucash_portfolio import BookAggregate
+from pricedb import PriceDbApplication, PriceModel, SecuritySymbol
+
 
 def read_parameters():
     """ Read parameters from the command line """
@@ -36,6 +38,21 @@ def main():
     shares = agg.get_num_shares()
 
     print(f"{security.namespace}:{security.mnemonic}, shares: {shares:,.2f}")
+
+    # todo add all the info from the security details page in web ui,
+    # prices, etc.
+    avg_price = agg.get_avg_price()
+    currency = agg.get_currency()
+    print(f"Average price: {avg_price:.4f} {currency}")
+
+    # last price
+    prices_app = PriceDbApplication()
+    sec_symbol = SecuritySymbol("", "")
+    sec_symbol.parse(symbol)
+    latest_price = prices_app.get_latest_price(sec_symbol)
+    latest_price_date = latest_price.datum.to_iso_date_string()
+    print(f"Latest price: {latest_price.value} {latest_price.currency} on {latest_price_date}")
+
     print("\n")
 
     print("Holding Accounts:")
