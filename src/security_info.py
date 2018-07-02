@@ -4,6 +4,8 @@ Display security details: holding accounts, quantity, value, last price w/ date,
 argparse can effectively replace click for building CLIs.
 """
 import argparse
+import logging
+
 from piecash import Commodity
 from gnucash_portfolio import BookAggregate
 from pricedb import PriceDbApplication, PriceModel, SecuritySymbol
@@ -13,7 +15,12 @@ def read_parameters():
     """ Read parameters from the command line """
     parser = argparse.ArgumentParser(description='read symbol from command line')
     parser.add_argument('symbol', type=str, help='security symbol')
+    parser.add_argument("-v", "--verbose", help="increase output verbosity", action="store_true")
     args = parser.parse_args()
+
+    if args.verbose:
+        logging.basicConfig(level=logging.DEBUG)
+
     return args
 
 def main():
@@ -51,9 +58,10 @@ def main():
     sec_symbol.parse(symbol)
     latest_price = prices_app.get_latest_price(sec_symbol)
     latest_price_date = latest_price.datum.to_iso_date_string()
+    logging.debug(latest_price)
     print(f"Latest price: {latest_price.value} {latest_price.currency} on {latest_price_date}")
 
-    print("\n")
+    print("")
 
     print("Holding Accounts:")
     print("-----------------")
