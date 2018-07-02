@@ -20,7 +20,7 @@ def main():
         balance = aggregate.get_balance_on(today.value)
         print(f"{aggregate.account.name}, {balance:,.2f}")
 
-    print("\n")
+    #print("\n")
 
 if __name__ == "__main__":
     main()
