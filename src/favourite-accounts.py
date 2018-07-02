@@ -18,7 +18,9 @@ def main():
         today.today()
 
         balance = aggregate.get_balance_on(today.value)
-        print(f"{aggregate.account.name}, {balance:,.2f}")
+        currency = aggregate.account.commodity.mnemonic
+
+        print(f"{aggregate.account.name}, {balance:,.2f} {currency}")
 
     #print("\n")
 
