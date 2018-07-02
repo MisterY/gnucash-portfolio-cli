@@ -29,13 +29,21 @@ def main():
         print(f"No securities found for {symbol}.")
         exit
 
+    # header
+    print("    security            quantity  ")
+    print("-------------------------------------------------------")
+
     shares = agg.get_num_shares()
 
-    print(f"{security.namespace}:{security.mnemonic}, shares: {shares}")
+    print(f"{security.namespace}:{security.mnemonic}, shares: {shares:,.2f}")
+    print("\n")
+
+    print("Holding Accounts:")
+    print("-----------------")
 
     for account in agg.accounts:
         balance = account.get_balance()
-        print(f"{account.fullname}, {balance}")
+        print(f"{account.fullname}, {balance:,.2f}")
 
 if __name__ == "__main__":
     main()
