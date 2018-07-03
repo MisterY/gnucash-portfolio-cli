@@ -6,7 +6,7 @@ argparse can effectively replace click for building CLIs.
 import argparse
 import logging
 
-from piecash import Commodity
+from piecash import Commodity, Account
 from gnucash_portfolio import BookAggregate
 from pricedb import PriceDbApplication, PriceModel, SecuritySymbol
 
@@ -31,7 +31,7 @@ def __get_model_for_details(
     """ Loads the model for security details """
     sec_agg = svc.securities.get_aggregate_for_symbol(symbol)
 
-    model = security_models.SecurityDetailsViewModel()
+    model = SecurityDetailsViewModel()
 
     model.symbol = sec_agg.security.namespace + ":" + sec_agg.security.mnemonic
     model.security = sec_agg.security
@@ -92,6 +92,47 @@ def __get_model_for_details(
 
     return model
 
+def __display(model: SecurityDetailsViewModel):
+    """ Format and display the results """
+    # header
+    print("    security            quantity  ")
+    print("-------------------------------------------------------")
+
+    #shares = agg.get_num_shares()
+    
+    print(f"{model.security.namespace}:{model.security.mnemonic}, shares: {model.quantity:,.2f}")
+
+    # todo add all the info from the security details page in web ui,
+    # prices, etc.
+    # avg_price = agg.get_avg_price()
+    #currency = agg.get_currency()
+    currency = model.currency
+    print(f"Average price: {model.average_price:.2f} {currency}")
+
+    # last price
+    prices_app = PriceDbApplication()
+    sec_symbol = SecuritySymbol("", "")
+    sec_symbol.parse(model.symbol)
+    latest_price = prices_app.get_latest_price(sec_symbol)
+    latest_price_date = latest_price.datum.to_iso_date_string()
+    logging.debug(latest_price)
+    print(f"Latest price: {latest_price.value:.2f} {latest_price.currency} on {latest_price_date}")
+
+    print("")
+
+    print(f"Income: {model.income} {model.currency}, {model.income_perc:.2f}%")
+    
+
+    print("")
+
+    print("Holding Accounts:")
+    print("-----------------")
+
+    for account in model.accounts:
+        balance = account.get_balance()
+        print(f"{account.fullname}, {balance:,.2f}")
+
+
 def main():
     args = read_parameters()
     symbol = args.symbol
@@ -109,37 +150,8 @@ def main():
         print(f"No securities found for {symbol}.")
         exit
 
-    # header
-    print("    security            quantity  ")
-    print("-------------------------------------------------------")
+    __display(model)
 
-    shares = agg.get_num_shares()
-
-    print(f"{security.namespace}:{security.mnemonic}, shares: {shares:,.2f}")
-
-    # todo add all the info from the security details page in web ui,
-    # prices, etc.
-    avg_price = agg.get_avg_price()
-    currency = agg.get_currency()
-    print(f"Average price: {avg_price:.4f} {currency}")
-
-    # last price
-    prices_app = PriceDbApplication()
-    sec_symbol = SecuritySymbol("", "")
-    sec_symbol.parse(symbol)
-    latest_price = prices_app.get_latest_price(sec_symbol)
-    latest_price_date = latest_price.datum.to_iso_date_string()
-    logging.debug(latest_price)
-    print(f"Latest price: {latest_price.value} {latest_price.currency} on {latest_price_date}")
-
-    print("")
-
-    print("Holding Accounts:")
-    print("-----------------")
-
-    for account in agg.accounts:
-        balance = account.get_balance()
-        print(f"{account.fullname}, {balance:,.2f}")
 
 if __name__ == "__main__":
     main()
