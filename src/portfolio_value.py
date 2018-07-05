@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """ Portfolio Value report """
 
 from pydatum import Datum
