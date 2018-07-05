@@ -120,7 +120,8 @@ def __display(model: SecurityDetailsViewModel):
 
     print("")
 
-    print(f"Income: {model.income} {model.currency}, {model.income_perc:.2f}%")
+    # Income
+    print(f"Income: {model.income:,.2f} {model.currency}, {model.income_perc:.2f}%")
     
 
     print("")
@@ -130,7 +131,8 @@ def __display(model: SecurityDetailsViewModel):
 
     for account in model.accounts:
         balance = account.get_balance()
-        print(f"{account.fullname}, {balance:,.2f}")
+        value = balance * latest_price.value
+        print(f"{account.fullname}, {balance:,.2f} units, {value:,.2f} {latest_price.currency}")
 
 
 def main():
