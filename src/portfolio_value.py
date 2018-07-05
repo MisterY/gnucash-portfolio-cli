@@ -16,25 +16,24 @@ def main():
 
     # Display
     print_row("security", "cost", "balance", "gain/loss", "income")
-    print("--------------------------------------------------------------------------------------------")
+    print("------------------------------------------------------------------------------------------------")
 
-    sorted(model.stock_rows, key=lambda row: row.exchange + ":" + row.symbol)
+    rows = sorted(model.stock_rows, key=lambda row: f"{row.exchange}:{row.symbol}")
 
-    for row in model.stock_rows:
+    for row in rows:
         x = StockViewModel()
         col1 = f"{row.exchange}:{row.symbol}"
         col2 = f"{row.shares_num:,} @ {row.avg_price:,.2f} {row.currency} = {row.cost:,.2f}"
-        col3 = f"@ {row.price:,.2f} = {row.balance:,}"
+        col3 = f"@ {row.price:,.2f} = {row.balance:,.2f}"
         col4 = f"{row.gain_loss:,.2f}, {row.gain_loss_perc:,.2f}%"
-        col5 = f"{row.income}"
+        col5 = f"{row.income:,.2f}"
 
         print_row(col1, col2, col3, col4, col5)
 
-    print("")
 
 def print_row(col1, col2, col3, col4, col5):
     """ Print the values in one row """
-    line = f"{col1:<15} {col2:<32} {col3:<18} {col4:^15} {col5:>8}"
+    line = f"{col1:<15} {col2:>32} {col3:>20} {col4:^18} {col5:>8}"
     print(line)
 
 
