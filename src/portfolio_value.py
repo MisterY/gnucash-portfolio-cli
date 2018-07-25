@@ -16,7 +16,7 @@ def main():
     model = portfolio_value.run(parameters)
 
     # Display
-    print_row("security", "cost", "balance", "gain/loss", "income")
+    print_row("security", "cost", "balance", "gain/loss", "%", "income")
     print("------------------------------------------------------------------------------------------------")
 
     rows = sorted(model.stock_rows, key=lambda row: f"{row.exchange}:{row.symbol}")
@@ -26,15 +26,16 @@ def main():
         col1 = f"{row.exchange}:{row.symbol}"
         col2 = f"{row.shares_num:,} @ {row.avg_price:,.2f} {row.currency} = {row.cost:,.2f}"
         col3 = f"@ {row.price:,.2f} = {row.balance:,.2f}"
-        col4 = f"{row.gain_loss:,.2f}, {row.gain_loss_perc:,.2f}%"
-        col5 = f"{row.income:,.2f}"
+        col4 = f"{row.gain_loss:,.2f}"
+        col5 = f"{row.gain_loss_perc:,.2f}%"
+        col6 = f"{row.income:,.2f}"
 
-        print_row(col1, col2, col3, col4, col5)
+        print_row(col1, col2, col3, col4, col5, col6)
 
 
-def print_row(col1, col2, col3, col4, col5):
+def print_row(col1, col2, col3, col4, col5, col6):
     """ Print the values in one row """
-    line = f"{col1:<15} {col2:>32} {col3:>20} {col4:^18} {col5:>8}"
+    line = f"{col1:<15} {col2:>32} {col3:>20} {col4:>10} {col5:>8} {col6:>8}"
     print(line)
 
 
