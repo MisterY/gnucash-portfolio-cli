@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """
 Display security details: holding accounts, quantity, value, last price w/ date, asset class.
+Calculate:
+    - Return of Capital
+    - Yield
 argparse can effectively replace click for building CLIs.
 """
 import argparse
@@ -66,6 +69,9 @@ def __get_model_for_details(
     # income in the last 12 months
     # income_last_year = sec_agg.get_income_total
     # model.income_perc_last_12m = 0
+
+    # Return of Capital
+    roc = sec_agg.get_return_of_capital()
 
     # total return
     model.total_return = model.profit_loss + model.income
