@@ -29,7 +29,7 @@ def read_parameters():
     return args
 
 
-def __display(model: SecurityDetailsViewModel):
+def display(model: SecurityDetailsViewModel):
     """ Format and display the results """
     # header
     print("    security            quantity  ")
@@ -90,7 +90,7 @@ def main():
         print(f"No securities found for {symbol}.")
         exit
 
-    __display(model)
+    display(model)
 
 
 if __name__ == "__main__":
