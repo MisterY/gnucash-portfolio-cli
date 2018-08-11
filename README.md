@@ -14,6 +14,25 @@ In general, it should be possible to set the log level with `--log=DEBUG` but th
 
 ## Distribution
 
+Create .pypirc file in your profile directory, containing:
+
+```ini
+[distutils]
+index-servers =
+    pypi
+    test
+
+[pypi]
+repository: https://upload.pypi.org/legacy/
+username: ****
+password: ****
+
+[test]
+repository: https://test.pypi.org/legacy/
+username: ****
+password: ****
+```
+
 ### Test Site
 
 ```console
