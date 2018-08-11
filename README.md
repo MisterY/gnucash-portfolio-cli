@@ -11,3 +11,17 @@ Initially, there well be simple scripts for accessing the basic features. This c
 Set the log level using `-v` parameter.
 
 In general, it should be possible to set the log level with `--log=DEBUG` but this does not work when using argparse.
+
+## Distribution
+
+### Test Site
+
+```console
+python setup.py sdist upload -r test
+```
+
+### Production Site
+
+```console
+python setup.py sdist upload -r pypi
+```

@@ -13,7 +13,7 @@ from piecash import Commodity, Account
 from gnucash_portfolio import BookAggregate
 from pricedb import PriceDbApplication, PriceModel, SecuritySymbol
 
-from model.security_models import SecurityDetailsViewModel
+from gnucash_portfolio_cli.model.security_models import SecurityDetailsViewModel
 
 
 def read_parameters():
@@ -72,6 +72,7 @@ def __get_model_for_details(
 
     # Return of Capital
     roc = sec_agg.get_return_of_capital()
+    model.return_of_capital = roc
 
     # total return
     model.total_return = model.profit_loss + model.income
