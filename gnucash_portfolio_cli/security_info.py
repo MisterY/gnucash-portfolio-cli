@@ -32,8 +32,9 @@ def read_parameters():
 def display(model: SecurityDetailsViewModel):
     """ Format and display the results """
     # header
-    print("    security            quantity  ")
-    print("-------------------------------------------------------")
+    #print("    security            quantity  ")
+    #print("-------------------------------------------------------")
+    print(f"{model.security.fullname}")
 
     #shares = agg.get_num_shares()
     
