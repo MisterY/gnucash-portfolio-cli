@@ -68,6 +68,9 @@ def display(model: SecurityDetailsViewModel):
 
     for account in model.accounts:
         balance = account.get_balance()
+        if balance == 0:
+            # Skip empty accounts
+            continue
         value = balance * latest_price.value
         print(f"{account.fullname}, {balance:,.2f} units, {value:,.2f} {latest_price.currency}")
 
