@@ -79,8 +79,8 @@ def display(model: SecurityDetailsViewModel):
         print(f"{account.fullname}, {balance:,.2f} units, {value:,.2f} {latest_price.currency}")
 
 
-def main():
-    args = read_parameters()
+def run(args):
+    """ Call this method if running from another module which parses arguments """
     symbol = args.symbol
     symbol = symbol.upper()
 
@@ -99,6 +99,11 @@ def main():
 
     display(model)
 
+
+def main():
+    args = read_parameters()
+
+    run(args)
 
 if __name__ == "__main__":
     main()
