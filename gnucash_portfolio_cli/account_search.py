@@ -12,12 +12,16 @@ def read_parameters():
     args = parser.parse_args()
     return args
 
-# Get parameter from command line
-args = read_parameters()
+def main():
+    # Get parameter from command line
+    args = read_parameters()
 
-book = BookAggregate()
-accounts = book.accounts.find_by_name(args.search_term)
-accounts = sorted(accounts, key=lambda account: account.fullname)
+    book = BookAggregate()
+    accounts = book.accounts.find_by_name(args.search_term)
+    accounts = sorted(accounts, key=lambda account: account.fullname)
 
-for account in accounts:
-    print(f"{account.fullname} {account.description}, {account.guid}")
+    for account in accounts:
+        print(f"{account.fullname} {account.description}, {account.guid}")
+
+if __name__ == "__main__":
+    main()
