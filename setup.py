@@ -3,7 +3,7 @@
 from setuptools import setup
 
 setup(name='gnucash_portfolio_cli',
-      version='1.2.0',
+      version='1.2.1',
       description='command-line interface to Gnucash Portfolio',
       url='https://github.com/MisterY/gnucash-portfolio-cli',
       author='Alen Siljak',

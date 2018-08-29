@@ -11,36 +11,3 @@ Initially, there are a few simple scripts for providing the basic features. That
 Set the log level using `-v` parameter.
 
 In general, it should be possible to set the log level with `--log=DEBUG` but this does not work when using argparse.
-
-## Distribution
-
-Create .pypirc file in your profile directory, containing:
-
-```ini
-[distutils]
-index-servers =
-    pypi
-    test
-
-[pypi]
-repository: https://upload.pypi.org/legacy/
-username: ****
-password: ****
-
-[test]
-repository: https://test.pypi.org/legacy/
-username: ****
-password: ****
-```
-
-### Test Site
-
-```console
-python setup.py sdist upload -r test
-```
-
-### Production Site
-
-```console
-python setup.py sdist upload -r pypi
-```
