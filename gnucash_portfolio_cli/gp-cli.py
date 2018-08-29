@@ -14,17 +14,21 @@ def show(args):
 
 def main():
     """ this code is in a function so that it can be declared an entry point in setup.py """
+    import sys
+    
     args = parser.parse_args()
-    if isinstance(args, argparse.Namespace):
-        args = parser.parse_args(["secinfo", "vym"])
-        #args = parser.parse_args(["-h"])
+    if len(sys.argv) == 1:
+    # if isinstance(args, argparse.Namespace):
+        #args = parser.parse_args(["secinfo", "vym"])
         #args = parser.parse_args(["test", "me"])
+        args = parser.parse_args(["-h"])
 
     args.func(args)
 
 # 
 parser: argparse.ArgumentParser = argparse.ArgumentParser()
 parser.add_argument('--version', action='version', version='0.0.1')
+parser.set_defaults()
 
 subparsers = parser.add_subparsers()
 parser_test: argparse.ArgumentParser = subparsers.add_parser("test")
