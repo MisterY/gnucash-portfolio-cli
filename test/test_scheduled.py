@@ -1,7 +1,7 @@
 """ Tests for scheduled transactions script """
-from gnucash_portfolio_cli.gpcli import main
+from gnucash_portfolio_cli import gpcli
 
 
 def test_creation():
     """ Call the cli and test scheduler tx script """
-    main(arg1="blah")
+    gpcli.main("scheduled")

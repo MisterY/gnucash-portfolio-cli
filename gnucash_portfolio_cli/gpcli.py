@@ -40,7 +40,7 @@ def setupParser():
 def show(args):
     print(f"yo args: what={args.what}, why={args.why}, yes={args.yes}")
 
-def main(**kwargs):
+def main(args):
     """ this code is in a function so that it can be declared an entry point in setup.py """
     import sys
     
