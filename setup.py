@@ -10,5 +10,10 @@ setup(name='gnucash_portfolio_cli',
       author_email='alen.siljak@gmx.com',
       license='GPL version 3',
       packages=['gnucash_portfolio_cli'],
-      install_requires=['gnucash_portfolio']
+      install_requires=['gnucash_portfolio'],
+          entry_points={
+        'console_scripts': [
+            'gpcli=gnucash_portfolio_cli.gpcli:main',
+        ],
+    },
 )
