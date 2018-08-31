@@ -8,6 +8,13 @@ Example: `gp-cli test me -w yo -y`
 import argparse
 
 
+def setup_portfolio_value_command(subparsers):
+    """ Set up the parser for the portfolio value command """
+    from gnucash_portfolio_cli import portfolio_value
+
+    subparser: argparse.ArgumentParser = subparsers.add_parser("pvalue")
+    subparser.set_defaults(func=portfolio_value.main)
+
 def setup_parser():
     """ Set up all the commands with parameters and arguments """
     from gnucash_portfolio_cli import security_info, upcoming_scheduled_transactions
@@ -18,6 +25,7 @@ def setup_parser():
 
     subparsers = parser.add_subparsers()
     parser_test: argparse.ArgumentParser = subparsers.add_parser("test")
+
     parser_secinfo: argparse.ArgumentParser = subparsers.add_parser("secinfo")
 
     # argument (required)
@@ -35,6 +43,8 @@ def setup_parser():
     # Scheduled Transactions
     parser_scheduled: argparse.ArgumentParser = subparsers.add_parser("scheduled")
     parser_scheduled.set_defaults(func=upcoming_scheduled_transactions.main)
+
+    setup_portfolio_value_command(subparsers)
 
     return parser
 
