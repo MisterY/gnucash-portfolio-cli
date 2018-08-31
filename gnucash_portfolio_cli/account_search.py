@@ -13,6 +13,7 @@ def read_parameters():
     return args
 
 def main():
+    """ Main entry point. Useful for unit testing """
     # Get parameter from command line
     args = read_parameters()
 

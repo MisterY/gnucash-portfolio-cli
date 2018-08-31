@@ -37,7 +37,7 @@ def display(model: SecurityDetailsViewModel):
     print(f"{model.security.fullname}")
 
     #shares = agg.get_num_shares()
-    
+
     print(f"{model.security.namespace}:{model.security.mnemonic}, shares: {model.quantity:,.2f}")
 
     # todo add all the info from the security details page in web ui,
@@ -63,7 +63,6 @@ def display(model: SecurityDetailsViewModel):
     # Return of Capital.
     if model.return_of_capital:
         print(f"Return of capital: {model.return_of_capital:,.2f}")
-    
 
     print("")
 

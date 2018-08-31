@@ -40,10 +40,10 @@ def setupParser():
 def show(args):
     print(f"yo args: what={args.what}, why={args.why}, yes={args.yes}")
 
-def main(args):
+def main():
     """ this code is in a function so that it can be declared an entry point in setup.py """
     import sys
-    
+
     parser = setupParser()
 
     args = parser.parse_args()

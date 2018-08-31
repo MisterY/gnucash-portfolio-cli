@@ -5,6 +5,7 @@ from pydatum import Datum
 
 
 def main():
+    """ Main entry point. Useful for calling from cli script or unit tests """
     from gnucash_portfolio.reports import portfolio_value
     from gnucash_portfolio.model.stock_model import StockViewModel
     from gnucash_portfolio.reports.portfolio_models import PortfolioValueInputModel, PortfolioValueViewModel
@@ -22,7 +23,6 @@ def main():
     rows = sorted(model.stock_rows, key=lambda row: f"{row.exchange}:{row.symbol}")
 
     for row in rows:
-        x = StockViewModel()
         col1 = f"{row.exchange}:{row.symbol}"
         col2 = f"{row.shares_num:,} @ {row.avg_price:,.2f} {row.currency} = {row.cost:,.2f}"
         col3 = f"@ {row.price:,.2f} = {row.balance:,.2f}"
