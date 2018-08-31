@@ -6,11 +6,12 @@ The commands will invoke their respective modules.
 Example: `gp-cli test me -w yo -y`
 """
 import argparse
-from gnucash_portfolio_cli import security_info, upcoming_scheduled_transactions
 
 
-def setupParser():
+def setup_parser():
     """ Set up all the commands with parameters and arguments """
+    from gnucash_portfolio_cli import security_info, upcoming_scheduled_transactions
+
     parser: argparse.ArgumentParser = argparse.ArgumentParser()
     parser.add_argument('--version', action='version', version='0.0.1')
     parser.set_defaults()
@@ -44,7 +45,7 @@ def main():
     """ this code is in a function so that it can be declared an entry point in setup.py """
     import sys
 
-    parser = setupParser()
+    parser = setup_parser()
 
     args = parser.parse_args()
     if len(sys.argv) == 1:

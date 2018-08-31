@@ -12,12 +12,17 @@ def read_parameters():
     args = parser.parse_args()
     return args
 
-# Get parameter from command line
-args = read_parameters()
+def main():
+    """ Main method, for unit testing """
+    # Get parameter from command line
+    args = read_parameters()
 
-book = BookAggregate()
-securities = book.securities.find(args.search_term)
-securities = sorted(securities, key=lambda security: security.namespace + ":" + security.mnemonic)
+    book = BookAggregate()
+    securities = book.securities.find(args.search_term)
+    securities = sorted(securities, key=lambda security: security.namespace + ":" + security.mnemonic)
 
-for security in securities:
-    print(f"{security.namespace}:{security.mnemonic} {security.fullname}")
+    for security in securities:
+        print(f"{security.namespace}:{security.mnemonic} {security.fullname}")
+
+if __name__ == "__main__":
+    main()

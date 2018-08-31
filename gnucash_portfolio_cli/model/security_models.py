@@ -1,9 +1,5 @@
 """ Models for Securities """
 
-from decimal import Decimal
-from typing import List
-
-
 #@dataclass
 class StockAnalysisInputModel: #pylint: disable=invalid-name
     """ Input model for Stock Analysis """
