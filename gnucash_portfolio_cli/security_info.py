@@ -59,7 +59,10 @@ def display(model: SecurityDetailsViewModel):
     print("")
 
     # Income
-    print(f"Income: {model.income:,.2f} {model.currency}, {model.income_perc:.2f}%")
+    print("Income")
+    print(f"Total: {model.income:,.2f} {model.currency}, {model.income_perc:.2f}%")
+    print(f"Last 12m: {model.income_last_12m:,.2f} {model.currency}, {model.income_perc_last_12m:.2f}%")
+
     # Return of Capital.
     if model.return_of_capital:
         print(f"Return of capital: {model.return_of_capital:,.2f}")

@@ -49,10 +49,12 @@ def main():
 
     args = parser.parse_args()
     if len(sys.argv) == 1:
-    # if isinstance(args, argparse.Namespace):
-        #args = parser.parse_args(["secinfo", "vym"])
-        #args = parser.parse_args(["test", "me"])
-        args = parser.parse_args(["-h"])
+        params = ["-h"]
+        # For debugging:
+        #params = parser.parse_args(["secinfo", "vym"])
+        #params = parser.parse_args(["test", "me"])
+        #params = ["scheduled"]
+        args = parser.parse_args(params)
 
     args.func(args)
 
