@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 Trying to put the whole CLI in here.
 It will allow listing all the available commands with options and parameters (if any).
