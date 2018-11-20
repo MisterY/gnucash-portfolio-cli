@@ -11,7 +11,7 @@ setup(name='gnucash_portfolio_cli',
       license='GPL version 3',
       packages=['gnucash_portfolio_cli'],
       install_requires=['gnucash_portfolio'],
-          entry_points={
+      entry_points={
         'console_scripts': [
             'gpcli=gnucash_portfolio_cli.gpcli:main',
         ],
