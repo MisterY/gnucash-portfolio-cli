@@ -4,7 +4,7 @@
 from pydatum import Datum
 from gnucash_portfolio import BookAggregate
 
-def main():
+def main(args = None):
     """ Show the list of favorite accounts """
     print("Favourite accounts:\n")
     book = BookAggregate()
@@ -12,7 +12,6 @@ def main():
     favourites = sorted(favourites, key=lambda aggregate: aggregate.account.name)
 
     for aggregate in favourites:
-        # get details
         #balance = aggregate.get_balance()
         today = Datum()
         today.today()
@@ -20,7 +19,7 @@ def main():
         balance = aggregate.get_balance_on(today.value)
         currency = aggregate.account.commodity.mnemonic
 
-        print(f"{aggregate.account.name:<25}, {balance:>10,.2f} {currency}")
+        print(f"{aggregate.account.name:<25}{balance:>10,.2f} {currency}")
 
     #print("\n")
 
