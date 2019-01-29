@@ -4,7 +4,7 @@ List upcoming scheduled transactions.
 Allow for setting the period. By default, use 2 weeks?
 """
 
-def main():
+def main(args=None):
     from gnucash_portfolio import BookAggregate
 
     book = BookAggregate()
