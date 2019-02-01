@@ -23,8 +23,8 @@ def main(args):
 
     for row in rows:
         col1 = f"{row.exchange}:{row.symbol}"
-        col2 = f"{row.shares_num:,} @ {row.avg_price:,.2f} {row.currency} = {row.cost:,.2f}"
-        col3 = f"@ {row.price:,.2f} = {row.balance:,.2f}"
+        col2 = f"{row.shares_num:,} @ {row.avg_price:,.2f} {row.currency} = {row.cost:>7,.2f}"
+        col3 = f"@ {row.price:,.2f} = {row.balance:>9,.2f}"
         col4 = f"{row.gain_loss:,.2f}"
         col5 = f"{row.gain_loss_perc:,.2f}%"
         col6 = f"{row.income:,.2f}"
