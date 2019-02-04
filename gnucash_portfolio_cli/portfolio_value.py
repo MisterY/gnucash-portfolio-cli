@@ -5,9 +5,8 @@ def main(args):
     """ Main entry point. Useful for calling from cli script or unit tests """
     from pydatum import Datum
     from gnucash_portfolio.reports import portfolio_value
-    #from gnucash_portfolio.model.stock_model import StockViewModel
     from gnucash_portfolio.reports.portfolio_models import PortfolioValueInputModel
-    #, PortfolioValueViewModel
+    
 
     parameters = PortfolioValueInputModel()
     today = Datum()
